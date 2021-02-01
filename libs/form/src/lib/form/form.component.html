@@ -1,0 +1,222 @@
+<section class="grid md:grid-cols-2 px-2 md:px-14 mt-24">
+  <form [formGroup]="bannerForm">
+    <div class="px-0 md:px-20 grid grid-cols-2 justify-items-end space-y-4">
+      <ui-label for="type" label="Type"></ui-label>
+      <select id="type" class="w-full" formControlName="typeBanner">
+        <option *ngFor="let select of typeBannerOptions" [value]="select.value">
+          {{ select.text }}
+        </option>
+      </select>
+
+      <ui-label for="type-text" label="Type Text"></ui-label>
+      <select id="text-type" class="w-full" formControlName="md">
+        <option *ngFor="let select of typeTextOptions" [value]="select.value">
+          {{ select.text }}
+        </option>
+      </select>
+
+      <ui-label for="text-input" label="Text Input"></ui-label>
+      <input
+        type="text"
+        id="text-input"
+        class="w-full"
+        formControlName="text"
+      />
+
+      <ui-label label="Font Size" for="font-size"></ui-label>
+      <select id="font-size" class="w-full" formControlName="fontSize">
+        <option *ngFor="let select of fontSizeOptions" [value]="select.value">
+          {{ select.text }}
+        </option>
+      </select>
+
+      <ng-container *ngIf="typeBanner === 'package'">
+        <ui-label label="Short Description" for="short-description"></ui-label>
+        <input
+          type="text"
+          class="w-full"
+          id="short-description"
+          formControlName="description"
+        />
+
+        <ui-label label="Package Manage" for="package-manage"></ui-label>
+        <select
+          id="package-manage"
+          class="w-full"
+          formControlName="packageManager"
+        >
+          <option
+            *ngFor="let select of packageManagerOptions"
+            [value]="select.value"
+          >
+            {{ select.text }}
+          </option>
+        </select>
+
+        <ui-label label="Package Name" for="package-name"></ui-label>
+        <input
+          type="text"
+          id="package-name"
+          class="w-full"
+          formControlName="packageName"
+        />
+      </ng-container>
+
+      <ng-container *ngIf="typeBanner === 'banner'">
+        <ui-label label="Github Username" for="github-username"></ui-label>
+        <input
+          type="text"
+          id="github-username"
+          class="w-full"
+          formControlName="username"
+        />
+
+        <ui-label label="Author Name" for="author-name"></ui-label>
+        <input
+          type="text"
+          id="author-name"
+          class="w-full"
+          formControlName="author"
+        />
+
+        <ui-label label="Date" for="date"></ui-label>
+        <input type="date" id="date" class="w-full" formControlName="date" />
+
+        <ui-label label="Logo" for="logo"></ui-label>
+        <input type="text" id="logo" class="w-full" formControlName="logo" />
+      </ng-container>
+
+      <ui-label label="Theme" for="theme"></ui-label>
+      <select
+        id="theme"
+        class="w-full"
+        formControlName="theme"
+        (change)="changeTheme()"
+      >
+        <option *ngFor="let select of themeOptions" [value]="select.value">
+          {{ select.text }}
+        </option>
+      </select>
+
+      <ui-label label="Background Pattern" for="background-pattern"></ui-label>
+      <select id="background-pattern" class="w-full" formControlName="pattern">
+        <option
+          *ngFor="let select of heroPatternOptions"
+          [value]="select.value"
+        >
+          {{ select.text }}
+        </option>
+      </select>
+
+      <ui-label label="File Type" for="file-type"></ui-label>
+      <select id="file-type" class="w-full" formControlName="fileType">
+        <option *ngFor="let select of fileTypeOptions" [value]="select.value">
+          {{ select.text }}
+        </option>
+      </select>
+
+      <ng-container formArrayName="images">
+        <ng-container *ngFor="let item of images.controls; let i = index">
+          <ng-container [formGroupName]="i">
+            <ui-label [label]="'Image ' + (i + 1)"></ui-label>
+            <div class="w-full">
+              <div class="grid grid-cols-1 space-y-4">
+                <select
+                  class="w-full"
+                  formControlName="type"
+                  (change)="changeTypeImage(i)"
+                >
+                  <option
+                    *ngFor="let select of typeImageOptions"
+                    [value]="select.value"
+                  >
+                    {{ select.text }}
+                  </option>
+                </select>
+
+                <ng-container [ngSwitch]="images.controls[i].value.type">
+                  <select
+                    class="w-full"
+                    formControlName="image"
+                    *ngSwitchCase="'hero-icons'"
+                  >
+                    <option
+                      *ngFor="let select of heroIconsOptions"
+                      [value]="select.value"
+                    >
+                      {{ select.text }}
+                    </option>
+                  </select>
+
+                  <select
+                    class="w-full"
+                    formControlName="image"
+                    *ngSwitchCase="'simple-icons'"
+                  >
+                    <option
+                      *ngFor="let select of simpleIconsOptions"
+                      [value]="select.value"
+                    >
+                      {{ select.text }}
+                    </option>
+                  </select>
+
+                  <input
+                    type="text"
+                    formControlName="image"
+                    *ngSwitchCase="'other'"
+                  />
+                </ng-container>
+
+                <div class="w-full">
+                  <div class="grid grid-cols-2 space-x-2">
+                    <select name="" id="" formControlName="width">
+                      <option
+                        *ngFor="let select of widthOptions"
+                        [value]="select.value"
+                      >
+                        {{ select.text }}
+                      </option>
+                    </select>
+                    <select name="" id="" formControlName="height">
+                      <option
+                        *ngFor="let select of heightOptions"
+                        [value]="select.value"
+                      >
+                        {{ select.text }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <button
+                  class="w-full border-gray-300 border rounded-md uppercase hover:border-gray-800"
+                  (click)="removeImage(i)"
+                >
+                  Remove Image {{ i + 1 }}
+                </button>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+
+      <ui-label [label]="'Image ' + (images.controls.length + 1)"></ui-label>
+      <button
+        type="button"
+        (click)="addImage()"
+        class="w-full border-gray-300 border rounded-md uppercase hover:border-gray-800"
+      >
+        Add Image {{ images.controls.length + 1 }}
+      </button>
+
+      <ui-label label="Watermark" for="watermark"></ui-label>
+      <select id="watermark" class="w-full" formControlName="showWatermark">
+        <option *ngFor="let select of watermarkOptions" [value]="select.value">
+          {{ select.text }}
+        </option>
+      </select>
+    </div>
+  </form>
+  <adrianub-preview-image [url]="url"></adrianub-preview-image>
+</section>

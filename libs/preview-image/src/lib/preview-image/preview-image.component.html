@@ -1,0 +1,78 @@
+<div
+  class="sticky block border shadow-md border-gray-300 rounded bg-white transform transition-all duration-500 hover:shadow-xl group overflow-hidden top-10 mt-10 cursor-pointer"
+  (click)="copyClipboard()"
+>
+  <div
+    class="absolute bottom-0 left-0 w-full h-0.5 duration-500 origin-left transform scale-x-0 bg-gray-800 group-hover:scale-x-100"
+  ></div>
+  <div
+    class="absolute bottom-0 left-0 w-0.5 h-full duration-500 origin-bottom transform scale-y-0 bg-gray-800 group-hover:scale-y-100"
+  ></div>
+  <div
+    class="absolute top-0 left-0 w-full h-0.5 duration-500 origin-right transform scale-x-0 bg-gray-800 group-hover:scale-x-100"
+  ></div>
+  <div
+    class="absolute bottom-0 right-0 w-0.5 h-full duration-500 origin-top transform scale-y-0 bg-gray-800 group-hover:scale-y-100"
+  ></div>
+
+  <img
+    [src]="_url"
+    title="Click to copy image URL to clipboard"
+    class="max-w-full transition duration-75 ease-in-out"
+    [class.opacity-10]="loading"
+    [class.opacity-100]="!loading"
+    (load)="imageLoaded()"
+    [ngStyle]="{ filter: loading ? 'blur(5px)' : '' }"
+  />
+</div>
+
+<ng-template [ngIf]="isCopied | async">
+  <div
+    class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:justify-end"
+  >
+    <div
+      class="max-w-sm w-full bg-gray-900 shadow-lg rounded-lg pointer-events-auto"
+    >
+      <div class="rounded-lg shadow-xs overflow-hidden">
+        <div class="p-4">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <svg
+                class="h-6 w-6 text-green-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <div class="ml-3 w-0 flex-1 pt-0.5">
+              <p class="text-sm leading-5 font-medium text-gray-200">
+                Copied image URL to clipboard
+              </p>
+            </div>
+            <div class="ml-4 flex-shrink-0 flex">
+              <button
+                class="inline-flex text-gray-400 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
+                (click)="closeNotification()"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

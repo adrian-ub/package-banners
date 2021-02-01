@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@adrianub/api-vercel": ["api/index.ts"],
+      "@adrianub/ui": ["libs/ui/src/index.ts"],
+      "@adrianub/api": ["libs/api/src/index.ts"],
+      "@adrianub/form": ["libs/form/src/index.ts"],
+      "@adrianub/layout": ["libs/layout/src/index.ts"],
+      "@adrianub/preview-image": ["libs/preview-image/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

@@ -1,0 +1,28 @@
+{
+  "npmScope": "adrianub",
+  "affected": { "defaultBase": "main" },
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+    }
+  },
+  "projects": {
+    "api-vercel": { "tags": [] },
+    "banners": { "tags": [] },
+    "banners-e2e": { "tags": [], "implicitDependencies": ["banners"] },
+    "ui": { "tags": [] },
+    "api": { "tags": [] },
+    "form": { "tags": [] },
+    "layout": { "tags": [] },
+    "preview-image": { "tags": [] }
+  }
+}
