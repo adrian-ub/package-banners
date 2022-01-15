@@ -40,7 +40,7 @@
     "chrome-aws-lambda": "^5.5.0",
     "hero-patterns": "^2.1.0",
     "heroicons": "^0.4.2",
-    "marked": "^2.0.0",
+    "marked": "^4.0.10",
     "puppeteer-core": "^5.5.0",
     "rxjs": "~6.6.3",
     "simple-icons": "^4.9.0",
