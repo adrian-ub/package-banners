@@ -80,7 +80,7 @@
     "jest": "26.2.2",
     "jest-preset-angular": "8.3.2",
     "mini-svg-data-uri": "^1.2.3",
-    "postcss": "^8.2.4",
+    "postcss": "^8.2.13",
     "postcss-import": "^14.0.0",
     "postcss-loader": "^4.2.0",
     "postcss-scss": "^3.0.4",
